@@ -14,7 +14,7 @@ class ItemGrid extends StatelessWidget {
       appBar: 
       AppBar(
         leading: Container(),
-        title: Text("HOME",
+        title: Text("Coffe Shop",
           style: font,
         ),backgroundColor: Colors.brown,
       ),
