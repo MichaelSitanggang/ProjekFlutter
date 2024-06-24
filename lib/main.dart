@@ -80,12 +80,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
        bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.brown,
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        selectedItemColor: Colors.white,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Akun'),
+        BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.white,), label: 'Home',),
+        BottomNavigationBarItem(icon: Icon(Icons.search,color: Colors.white,), label: 'Search'),
+        BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.white,), label: 'Akun'),
       ] ),
       body: _widgetOptions.elementAt(_selectedIndex),
     );

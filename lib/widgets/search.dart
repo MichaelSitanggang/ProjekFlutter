@@ -10,99 +10,48 @@ class SearchGrid extends StatefulWidget {
 }
 
 class _SearchGridState extends State<SearchGrid> {
-  final List<Item> items = [
-    Item(
-      name: 'Kopi Arabika + Poc Corn',
-      description: 'Kopi arabika terbaik',
-      price: 35000,
-      imageUrl: 'assets/item1.jpg',
-    ),
-    Item(
-      name: 'Kopi Jahe',
-      description: 'Kopi Jahe terbaik',
-      price: 20000,
-      imageUrl: 'assets/item2.jpg',
-    ),
-    Item(
-      name: 'Kopi Cappucino',
-      description: 'Kopi arabika terbaik',
-      price: 30000,
-      imageUrl: 'assets/kopi1.jpeg',
-    ),
-    Item(
-      name: 'Kopi Hitam Pahit',
-      description: 'Kopi arabika terbaik',
-      price: 10000,
-      imageUrl: 'assets/kopi2.jpeg',
-    ),
-    Item(
-      name: 'Kopi Gula Aren Cokelat',
-      description: 'Kopi arabika terbaik',
-      price: 37500,
-      imageUrl: 'assets/kopi3.jpeg',
-    ),
-    Item(
-      name: 'Kopi Susu',
-      description: 'Kopi arabika terbaik',
-      price: 25000,
-      imageUrl: 'assets/kopi4.jpeg',
-    ),
-    Item(
-      name: 'Kopi Gula Aren + Susu',
-      description: 'Kopi arabika terbaik',
-      price: 30000,
-      imageUrl: 'assets/kopi5.jpeg',
-    ),
-    Item(
-      name: 'Kopi Gula Aren',
-      description: 'Kopi arabika terbaik',
-      price: 100000,
-      imageUrl: 'assets/kopi6.jpeg',
-    ),
-  ];
-
+  
+ 
   TextEditingController searchController = TextEditingController();
   String searchKeyword = '';
 
   @override
   Widget build(BuildContext context) {
-    List<Item> filteredItems = searchKeyword.isEmpty
-        ? items.take(4).toList() 
-        // ? []
-        : items
-            .where((item) =>
-                item.name.toLowerCase().contains(searchKeyword.toLowerCase()))
-            .toList();
-
+    final item = Provider.of<CartProvider>(context);
+    final items = item.items;
+    List<Item> filteredItems = searchKeyword.isEmpty? items.take(4).toList() : items.where((item) =>item.name.toLowerCase().contains(searchKeyword.toLowerCase())).toList();
+    // ? []
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70.0,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: TextField(
-            controller: searchController,
-            decoration: InputDecoration(
-              hintText: 'Cari Item',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide.none,
+        title: Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: TextField(
+              controller: searchController,
+              decoration: InputDecoration(
+                hintText: 'Coffe Cappucino',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide.none,
+                ),
+                fillColor: Colors.white,
+                filled: true,
+                prefixIcon: Icon(Icons.search, color: Colors.grey),
               ),
-              fillColor: Colors.white,
-              filled: true,
-              prefixIcon: Icon(Icons.search, color: Colors.grey),
+              onChanged: (value) {
+                setState(() {
+                  searchKeyword = value;
+                });
+              },
             ),
-            onChanged: (value) {
-              setState(() {
-                searchKeyword = value;
-              });
-            },
           ),
         ),
       ),
-      body: filteredItems.isEmpty
-          ? Center(child: Text('Tidak ada item yang ditemukan'))
-          : GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      body: filteredItems.isEmpty? Center(child: Text('Tidak ada item yang ditemukan'))
+      :
+      GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 3 / 4,
                 crossAxisSpacing: 10,
@@ -116,11 +65,11 @@ class _SearchGridState extends State<SearchGrid> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ItemDetailScreen(item: item),
+                builder: (context) => ItemDetailScreen(item: item,),
               ),
             );
           },
-                  child: Card(
+              child: Card(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -158,13 +107,14 @@ class _SearchGridState extends State<SearchGrid> {
                           Container(
                             width: double.infinity,
                             child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Colors.brown.withOpacity(0.8)),
                               onPressed: () {
                                 context.read<CartProvider>().addItem(item);
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.add_shopping_cart, size: 20),
+                                  Icon(Icons.add_shopping_cart, size: 20,color: Colors.white,),
                                   SizedBox(width: 4),
                                 ],
                               ),

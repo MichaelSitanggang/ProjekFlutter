@@ -4,6 +4,7 @@ import 'package:projek_berhasil/models/item.dart';
 import 'package:projek_berhasil/provider/prov.dart';
 import 'package:projek_berhasil/widgets/itemdetail.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class WidgetGrid extends StatelessWidget {
   const WidgetGrid({
@@ -15,22 +16,24 @@ class WidgetGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return Consumer<CartProvider>(builder: (context,CartProvider,child){
+      final coffe = CartProvider.items;
+      return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 3 / 4, 
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
-      itemCount: items.length,
+      itemCount: coffe.length,
       itemBuilder: (context, index) {
-        final item = items[index];
+        final item = coffe[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ItemDetailScreen(item: item),
+                builder: (context) => ItemDetailScreen(item: item,),
               ),
             );
           },
@@ -62,7 +65,7 @@ class WidgetGrid extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Rp ${item.price.toStringAsFixed(0)}',
+                    "${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ',decimalDigits: 0).format(item.price)}",
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[600],
@@ -70,16 +73,19 @@ class WidgetGrid extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Container(
+                    // color: Colors.red,
                     width: double.infinity,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Colors.brown.withOpacity(0.8)),
                       onPressed: () {
+                      
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Berhasil Ditambahkan"),duration: Duration(milliseconds: 500),));
-                        context.read<CartProvider>().addItem(item);
+                        CartProvider.addItem(item);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.add_shopping_cart, size: 20),
+                          Icon(Icons.add_shopping_cart, size: 20,color: Colors.white,),
                           SizedBox(width: 4),
                         ],
                       ),
@@ -92,6 +98,7 @@ class WidgetGrid extends StatelessWidget {
         );
       },
     );
+    });
   }
 }
 

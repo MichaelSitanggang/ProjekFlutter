@@ -8,6 +8,7 @@ class ItemDetailScreen extends StatelessWidget {
 
   const ItemDetailScreen({Key? key, required this.item}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +46,14 @@ class ItemDetailScreen extends StatelessWidget {
                       'Rp ${item.price.toStringAsFixed(0)}',
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(height: 16),
                     Center(
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.brown.withOpacity(0.8)),
                         onPressed: () {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Berhasil Ditambahkan"),duration: Duration(milliseconds: 500),));
                           context.read<CartProvider>().addItem(item);
@@ -59,10 +61,9 @@ class ItemDetailScreen extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                
                             Container(
                               width: 150,
-                              child: Icon(Icons.add_shopping_cart)),
+                              child: Icon(Icons.add_shopping_cart,color: Colors.white,),),
                             SizedBox(width: 4),
                           ],
                         ),
