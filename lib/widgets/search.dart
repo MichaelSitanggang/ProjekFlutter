@@ -24,27 +24,25 @@ class _SearchGridState extends State<SearchGrid> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70.0,
-        title: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                hintText: 'Coffe Cappucino',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none,
-                ),
-                fillColor: Colors.white,
-                filled: true,
-                prefixIcon: Icon(Icons.search, color: Colors.grey),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: TextField(
+            controller: searchController,
+            decoration: InputDecoration(
+              hintText: 'Coffe Cappucino',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none,
               ),
-              onChanged: (value) {
-                setState(() {
-                  searchKeyword = value;
-                });
-              },
+              fillColor: Colors.white,
+              filled: true,
+              prefixIcon: Icon(Icons.search, color: Colors.grey),
             ),
+            onChanged: (value) {
+              setState(() {
+                searchKeyword = value;
+              });
+            },
           ),
         ),
       ),

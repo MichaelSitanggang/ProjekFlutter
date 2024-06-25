@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projek_berhasil/provider/prov.dart';
+import 'package:projek_berhasil/regisLogin/login.dart';
+import 'package:projek_berhasil/regisLogin/register.dart';
 import 'package:projek_berhasil/widgets/akun.dart';
+import 'package:projek_berhasil/widgets/gridwidget.dart';
 import 'package:projek_berhasil/widgets/keranjang.dart';
 import 'package:projek_berhasil/widgets/search.dart';
-import 'package:projek_berhasil/widgets/tampilan.dart';
-import 'package:projek_berhasil/widgets/tampilanawal.dart';
 import 'package:provider/provider.dart';
 
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WelcomeScreen(),
+      home: LoginPage(),
     );
   }
 }
@@ -42,7 +43,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
-   ItemGrid(),
+   WidgetGrid(),
    SearchGrid(),
    AkunWidget()
   ];
@@ -70,10 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ],
         ),
         child: FloatingActionButton(onPressed: (){
-          Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CartScreen()),
-                );
+          Navigator.push(context,MaterialPageRoute(builder: (context) => CartScreen()),);
         },child: Icon(Icons.shopping_cart),
         shape:CircleBorder(),),
 
