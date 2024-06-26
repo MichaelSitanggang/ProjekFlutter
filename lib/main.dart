@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projek_berhasil/provider/prov.dart';
 import 'package:projek_berhasil/regisLogin/login.dart';
-import 'package:projek_berhasil/regisLogin/register.dart';
 import 'package:projek_berhasil/widgets/akun.dart';
 import 'package:projek_berhasil/widgets/gridwidget.dart';
 import 'package:projek_berhasil/widgets/keranjang.dart';
 import 'package:projek_berhasil/widgets/search.dart';
+import 'package:projek_berhasil/widgets/tampilanawal.dart';
 import 'package:provider/provider.dart';
 
 

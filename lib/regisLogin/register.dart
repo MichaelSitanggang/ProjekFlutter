@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projek_berhasil/regisLogin/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyRegister extends StatefulWidget {
@@ -38,7 +37,7 @@ class _MyRegisterState extends State<MyRegister> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('assets/logocoffe.png',height: 100,),
+                  ClipOval(child: Image.asset('assets/logocoffe.png',height: 100,fit: BoxFit.cover,)),
                   SizedBox(height: 10,),
                   Container(
                     decoration: BoxDecoration(
@@ -99,7 +98,7 @@ class _MyRegisterState extends State<MyRegister> {
                             ),
                           ),
                           SizedBox(height: 20),
-                          //
+                          // passwd
                           Container(
                             width: 300,
                             child: TextField(
@@ -263,7 +262,7 @@ class _MyRegisterState extends State<MyRegister> {
     await prefs.setString('email', email);
     await prefs.setString('password', password);
     await prefs.setString('gender', JenisKelamin);
-    await prefs.setString('birthdate', TahunKelahiran);
+    await prefs.setString('ulangtahun', TahunKelahiran);
 
     showDialog(
       context: context,

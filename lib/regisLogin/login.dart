@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController nama = TextEditingController();
   final TextEditingController password = TextEditingController();
-   bool status = false;
+  bool status = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,13 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(bottom: 60),
+            margin: EdgeInsets.only(bottom: 135),
             padding: EdgeInsets.all(16.0),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset('assets/logocoffe.png', height: 100),
+                  ClipOval(child: Image.asset('assets/logocoffe.png', height: 100,fit: BoxFit.cover,)),
                   SizedBox(height: 10),
                   Container(
                     decoration: BoxDecoration(
@@ -97,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                           Row(
                             children: [
                               Container(
-
                                 margin: EdgeInsets.only(left: 20),
                                 child: Row(
                                   children: <Widget>[
@@ -115,7 +114,6 @@ class _LoginPageState extends State<LoginPage> {
                                         }
                                         return Colors.white;
                                       }),
-                                      
                                     ),
                                     Text('Tampilkan Password'),
                                     Container(

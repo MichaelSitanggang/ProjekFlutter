@@ -4,7 +4,7 @@ import 'package:projek_berhasil/models/item.dart';
 
 class CartProvider with ChangeNotifier {
   final List<Item> _items = [
-    Item(
+     Item(
       id: 1,
       name: 'Kopi Arabika + Pop Corn',
       description: 'Kopi Arabika Terbaik Dengan Paduan Pop Corn Yang Enak',
@@ -61,38 +61,39 @@ class CartProvider with ChangeNotifier {
       imageUrl: 'assets/kopi6.jpeg',
     ),
   ];
-
+  // item untuk barang
   List<Item> get items => _items;
 
+  //untuk menampung item yg ditambahkan ke keranjang
   List<Chart> _chart = [];
   List<Chart> get chart => _chart;
 
-  
+  // list dan map untuk keranjang dan totalharga keseluruan
+  List<Map<String, dynamic>> _checkoutHistory = [];
+  List<Map<String, dynamic>> get checkoutHistory => _checkoutHistory;
 
+  // menambah item dikeranjang kalau id nya sama maka qty bertmbh satu
   void addItem(Item item) {
     bool kondisi = false;
     for (var chartItem in _chart) {
       if (chartItem.item.id == item.id) {
         chartItem.quantity++;
         kondisi = true;
-        print("Data tambah");
         break;
       }
     }
-
     if (!kondisi) {
-      _chart.add(Chart(item: item, quantity: 1));
-      print("Data tambah");
+      _chart.add(Chart(item: item));
     }
-
     notifyListeners();
   }
 
-   int get totalQuantity {
+  //menghitung berapa barang yg ada di keranjang
+  int get totalQuantity {
     return _chart.fold(0, (total, chartItem) => total + chartItem.quantity);
   }
 
-
+  /// menghapus item dikeranjang
   void removeItem(Chart chartItem) {
     if (chartItem.quantity > 1) {
       chartItem.quantity--;
@@ -102,11 +103,33 @@ class CartProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void resetitem(){
+  //menghapus item keseluruan dikeranjang saat checkout
+  void resetitem() {
     _chart.clear();
     notifyListeners();
   }
 
+  /// total harga barang keseluruan
   double get totalPrice =>
       _chart.fold(0, (total, chartItem) => total + (chartItem.item.price * chartItem.quantity));
+
+
+  // mengambil item dari keranjang dan menampilkan pada history
+  void checkout() {
+    if (_chart.isNotEmpty) {
+      _checkoutHistory.add({
+        'chart': List<Chart>.from(_chart),
+        'totalPrice': totalPrice,
+      });
+      resetitem();
+    }
+  }
+
+  //menghapus item percard di history
+  void removecheck(int index){
+    if(index >= 0 && index < _checkoutHistory.length){
+      _checkoutHistory.removeAt(index);
+      notifyListeners();
+    }
+  }
 }

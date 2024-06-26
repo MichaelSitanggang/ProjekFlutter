@@ -140,7 +140,8 @@ class _CartScreenState extends State<CartScreen> {
                           TextButton(onPressed: (){
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${chart.totalQuantity} Barang Berhasil Di Checkout"),duration: Duration(seconds: 5),));
                             Navigator.pop(context);
-                            chart.resetitem();
+                            // chart.resetitem();
+                            chart.checkout();
                           }, child: Text("Ya",style: TextStyle(color: Colors.black))),
                           TextButton(onPressed: (){
                             Navigator.pop(context);
