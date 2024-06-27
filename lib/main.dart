@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projek_berhasil/models/tema.dart';
 import 'package:projek_berhasil/provider/prov.dart';
 import 'package:projek_berhasil/regisLogin/login.dart';
-import 'package:projek_berhasil/widgets/akun.dart';
 import 'package:projek_berhasil/widgets/gridwidget.dart';
 import 'package:projek_berhasil/widgets/keranjang.dart';
 import 'package:projek_berhasil/widgets/search.dart';
-import 'package:projek_berhasil/widgets/tampilanawal.dart';
 import 'package:provider/provider.dart';
 
 
@@ -14,6 +13,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider())
       ],
       child: MyApp(),
     ),
@@ -27,8 +27,16 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+         brightness: Brightness.light,
+         primarySwatch: Colors.blue,
+         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      themeMode: Provider.of<ThemeProvider>(context).isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: LoginPage(),
     );
   }
@@ -45,13 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
   static List<Widget> _widgetOptions = <Widget>[
    WidgetGrid(),
    SearchGrid(),
-   AkunWidget()
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
+      setState(() {
       _selectedIndex = index;
+      print('_widgetOptions length: ${_widgetOptions.length}');
     });
+    
   }
 
   @override
@@ -72,11 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: FloatingActionButton(onPressed: (){
           Navigator.push(context,MaterialPageRoute(builder: (context) => CartScreen()),);
-        },child: Icon(Icons.shopping_cart),
-        shape:CircleBorder(),),
+        },child: Icon(Icons.shopping_cart,color: Colors.black,),
+        shape:CircleBorder(),backgroundColor: Colors.transparent,),
 
       ),
-       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
        bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.brown,
         selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
@@ -86,7 +95,6 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
         BottomNavigationBarItem(icon: Icon(Icons.home,color: Colors.white,), label: 'Home',),
         BottomNavigationBarItem(icon: Icon(Icons.search,color: Colors.white,), label: 'Search'),
-        BottomNavigationBarItem(icon: Icon(Icons.person,color: Colors.white,), label: 'Akun'),
       ] ),
       body: _widgetOptions.elementAt(_selectedIndex),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projek_berhasil/provider/prov.dart';
+import 'package:projek_berhasil/widgets/riwayatcheck.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
-
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key});
 
@@ -19,6 +19,14 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: Text("Keranjang",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),),
         backgroundColor: Colors.brown,
+        actions: [
+          Container(
+            margin: EdgeInsets.only(right: 10),
+            child: IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutHistoryScreen()));
+            }, icon: Icon(Icons.history,size: 32,),),
+          )
+        ],
       ),
       body: Column(
         children: <Widget>[
