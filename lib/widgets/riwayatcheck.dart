@@ -25,7 +25,6 @@ class CheckoutHistoryScreen extends StatelessWidget {
                 final checkout = checkoutHistory[index];
                 final totalPrice = checkout['totalPrice'];
                 final chartItems = checkout['chart'] as List<Chart>;
-
                 return Card(
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Padding(

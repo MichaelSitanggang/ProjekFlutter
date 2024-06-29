@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projek_berhasil/models/item.dart';
 import 'package:projek_berhasil/provider/prov.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+
 
 class ItemDetailScreen extends StatelessWidget {
   final Item item;
@@ -43,7 +45,8 @@ class ItemDetailScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Rp ${item.price.toStringAsFixed(0)}',
+                      "${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0).format(item.price)}",
+                      //'Rp ${item.price.toStringAsFixed(0)}',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
