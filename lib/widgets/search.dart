@@ -41,6 +41,7 @@ class _SearchGridState extends State<SearchGrid> {
       'assets/corosel2.jpeg',
       'assets/corosel3.jpeg',
     ];
+    
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70.0,
@@ -77,9 +78,8 @@ class _SearchGridState extends State<SearchGrid> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.asset(
-                  item,
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(item,
                   fit: BoxFit.cover,
                   width: 1000.0,
                 ),

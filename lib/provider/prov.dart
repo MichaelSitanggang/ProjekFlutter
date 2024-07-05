@@ -110,8 +110,7 @@ class CartProvider with ChangeNotifier {
   }
 
   /// total harga barang keseluruan
-  double get totalPrice =>
-      _chart.fold(0, (total, chartItem) => total + (chartItem.item.price * chartItem.quantity));
+  double get totalPrice => _chart.fold(0, (total, chartItem) => total + (chartItem.item.price * chartItem.quantity));
 
 
   // mengambil item dari keranjang dan menampilkan pada history

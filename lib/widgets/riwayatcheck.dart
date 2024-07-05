@@ -15,11 +15,7 @@ class CheckoutHistoryScreen extends StatelessWidget {
         title: Text('Riwayat Checkout'),
         backgroundColor: Colors.brown,
       ),
-      body: checkoutHistory.isEmpty
-          ? Center(
-              child: Text('Tidak ada riwayat checkout.'),
-            )
-          : ListView.builder(
+      body: checkoutHistory.isEmpty ? Center(child: Text('Tidak ada riwayat checkout.'),) : ListView.builder(
               itemCount: checkoutHistory.length,
               itemBuilder: (context, index) {
                 final checkout = checkoutHistory[index];

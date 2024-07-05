@@ -8,5 +8,6 @@ class Chart {
     required this.item,
     this.quantity = 1,
   });
+  
   double get totalHarga => item.price * quantity;
 }
