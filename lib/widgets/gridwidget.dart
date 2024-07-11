@@ -78,7 +78,7 @@ class _WidgetGridState extends State<WidgetGrid> {
                                   },
                                 ), 
                                 SizedBox(height: 10,),
-                                Text("Slider Mode"),
+                                Text("Slider Mode",style: TextStyle(fontWeight: FontWeight.bold),),
                                 Slider(
                                   value: themeProvider.darkModeValue, 
                                   min: 0,
