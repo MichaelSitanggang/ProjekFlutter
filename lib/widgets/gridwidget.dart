@@ -27,7 +27,7 @@ class _WidgetGridState extends State<WidgetGrid> {
   @override
   Widget build(BuildContext context) {
     return Consumer2<CartProvider, ThemeProvider>(
-      builder: (context, cartProvider, themeProvider, child) {
+      builder: (context, cartProvider, themeProvider,child) {
         final coffe = cartProvider.items;
         return Scaffold(
           appBar: AppBar(
@@ -74,10 +74,22 @@ class _WidgetGridState extends State<WidgetGrid> {
                                 Switch(
                                   value: themeProvider.isDarkMode,
                                   onChanged: (value) {
-                                    themeProvider.tomboltema();
+                                    themeProvider.toggleTheme();
                                   },
-                                ),
-                              ],
+                                ), 
+                                SizedBox(height: 10,),
+                                Text("Slider Mode"),
+                                Slider(
+                                  value: themeProvider.darkModeValue, 
+                                  min: 0,
+                                  max: 1,
+                                  divisions: 1,
+                                  onChanged:(value) {
+                                    themeProvider.darkModeValue = value;
+                                  },
+                                  label: themeProvider.darkModeValue == 1 ? 'Gelap' : 'Terang',
+                                  )
+                                                        ],
                             ),
                           ),
                         );
